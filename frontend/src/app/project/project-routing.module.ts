@@ -5,6 +5,9 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectComponent } from './project.component';
 import { ProjectConst } from './config/const';
 import { FullIssueDetailComponent } from './pages/full-issue-detail/full-issue-detail.component';
+import {LoginComponent } from './components/user/login/login.component';
+import { SignupComponent } from './components/user/signup/signup.component';
+
 
 const routes: Routes = [
   {
