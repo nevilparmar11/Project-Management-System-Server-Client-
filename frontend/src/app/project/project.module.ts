@@ -33,6 +33,7 @@ import { FullIssueDetailComponent } from './pages/full-issue-detail/full-issue-d
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
+import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ProjectComponent } from './project.component';
     IssuePrioritySelectComponent,
     IssueReporterSelectComponent,
     IssueAssigneesSelectComponent,
-    ResizerComponent
+    ResizerComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,
