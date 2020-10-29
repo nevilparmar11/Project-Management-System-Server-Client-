@@ -1,0 +1,42 @@
+{
+    "name": "Project-Mangement-System",
+    "version": "1.0.0",
+    "description": "Project Management System",
+    "scripts": {
+        "install-dependencies": "npm run install-dependencies-front && npm run install-dependencies-back",
+        "install-dependencies-front": "cd frontend && npm i",
+        "install-dependencies-back": "cd backend && npm i",
+        "start:front": "npm run install-dependencies-front && cd frontend && npm start",
+        "build:front": "cd frontend && npm run build",
+        "build:storybook": "cd frontend && npm run build-storybook",
+        "start:back": "npm run install-dependencies-back && cd backend && npm run start:dev",
+        "build:back": "cd backend && npm run build",
+        "build": "npm run install-dependencies && npm run build:back && npm run build:front",
+        "heroku-postbuild": "npm run install-dependencies-back && npm run build:back",
+        "netlify-build": "npm run install-dependencies-front && npm run build:front",
+        "build-storybook": "npm run install-dependencies-front && npm run build:storybook"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nevilparmar11/Project-Management-System.git"
+    },
+    "keywords": [
+        "angular",
+        "akita",
+        "jira-clone",
+        "tailwind",
+        "typescript"
+    ],
+    "author": "Nevil Parmar",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/nevilparmar11/Project-Management-System/issues"
+    },
+    "homepage": "https://github.com/nevilparmar11/Project-Management-System#readme",
+    "engines": {
+        "node": "12.x"
+    },
+    "dependencies": {
+        "tslib": "^2.0.3"
+    }
+}

@@ -1,0 +1,23 @@
+<div class="flex items-center mt-6">
+    <form class="w-40 mr-4">
+        <p-input aria-label="search" icon="search" [control]="searchControl">
+        </p-input>
+    </form>
+    <div class="flex flex-row mr-3">
+        <div *ngFor="let user of projectQuery.users$ | async" class="lift-avatar" nz-tooltip [nzTooltipPlacement]="'bottom'" [class.is-active]="isUserSelected(user)" [nzTooltipTitle]="user.name">
+            <avatar class="flex" className="select-none shadow-outline-white" [avatarUrl]="user.avatarUrl" [size]="36" (click)="userChanged(user)">
+            </avatar>
+        </div>
+    </div>
+    <p-button class="ml-3" className="btn-empty" [isActive]="filterQuery.onlyMyIssue$ | async" (click)="onlyMyIssueChanged()">
+        Only My Issues
+    </p-button>
+    <p-button class="ml-3" [isActive]="filterQuery.ignoreResolve$ | async" (click)="ignoreResolvedChanged()" className="btn-empty">
+        Ignore Resolved
+    </p-button>
+    <div class="ml-3 flex items-center" *ngIf="filterQuery.any$ | async">
+        <div class="mr-3 w-px bg-backgroundMedium self-stretch"></div>
+        <p-button [className]="'btn-secondary'" (click)="resetAll()">Clear all
+        </p-button>
+    </div>
+</div>

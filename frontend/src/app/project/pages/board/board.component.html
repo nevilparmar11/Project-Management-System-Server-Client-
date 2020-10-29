@@ -1,0 +1,22 @@
+<div class="flex flex-col w-full h-full py-8 pl-8 pr-6">
+    <breadcrumbs [items]="breadcrumbs"></breadcrumbs>
+    <header class="flex justify-between mt-3 text-textDarkest">
+        <div class="text-2xl font-medium">Dashboard</div>
+        <div class="social-links">
+
+            <a href="https://www.nevilparmar.me/" target="_blank" rel="noopener">
+                <p-button className="btn-secondary mr-2"> 💻 About Me
+                </p-button>
+            </a>
+
+            <a href="https://github.com/nevilparmar11/project-management-system" target="_blank" rel="noopener">
+                <p-button className="btn-secondary" icon="github"> Source Code
+                </p-button>
+            </a>
+
+        </div>
+    </header>
+
+    <board-filter></board-filter>
+    <board-dnd></board-dnd>
+</div>
