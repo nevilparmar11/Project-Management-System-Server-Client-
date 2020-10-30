@@ -25,7 +25,13 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true }, functi
 
 router.get('/project/:id', async(req, res) => {
     console.log(req.params.id);
-    var result = await projects.findById(req.params.id).populate('admin pm issues users');
+    var result = await projects.findById(req.params.id).populate([{
+        path: 'admin pm issues users',
+        populate: {
+            path: 'comments',
+            model: 'comments',
+        }
+    }]);
     res.json(result);
 })
 
