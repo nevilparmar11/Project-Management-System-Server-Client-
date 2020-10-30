@@ -1,0 +1,54 @@
+[{
+  "_id": {
+    "$oid": "5f9c1d21819b3249bc25befa"
+  },
+  "title": "Who is the author of Angular Jira clone?",
+  "description": "<h3>Hi! My name is Trung.</h3><p>I’m the <u>lead front-end engineer</u> at Zyllem, where I work mostly with Angular to build client side web app. I love thinking about development and user experience. </p><br/><p>Find me around the web</p><p><br></p><ul><li>My blog: <a href='https://trungk18.com/' rel='noopener noreferrer' target='_blank'>https://trungk18.com/</a></li><li><a href='https://github.com/trungk18' rel='noopener noreferrer' target='_blank'>https://github.com/trungk18</a></li><li><a href='https://stackoverflow.com/users/3375906/trungk18' rel='noopener noreferrer' target='_blank'>https://stackoverflow.com/users/3375906/trungk18</a></li><li><a href='https://stackblitz.com/@trungk18' rel='noopener noreferrer' target='_blank'>https://stackblitz.com/@trungk18</a></li><li><a href='https://twitter.com/tuantrungvo' rel='noopener noreferrer' target='_blank'>https://twitter.com/tuantrungvo</a></li></ul><p><br></p>",
+  "type": "Task",
+  "status": "Backlog",
+  "priority": "High",
+  "listPosition": 3,
+  "createdAt": "2020-06-12T14:40:00.000Z",
+  "updatedAt": "2020-06-12T14:51:00.000Z",
+  "reporterId": {
+    "$oid": "5f9b0fc3856c60c2c2d349a5"
+  },
+  "userIds": [
+    {
+      "$oid": "5f9b0fc3856c60c2c2d349a5"
+    }
+  ],
+  "comments": [
+    {
+      "$oid": "5f9c1f34819b3249bc25befd"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "5f9c1d21819b3249bc25befb"
+  },
+  "title": "Angular router not working on Netlify on refresh",
+  "description": "Just updated description",
+  "type": "Bug",
+  "status": "Done",
+  "priority": "High",
+  "listPosition": 1,
+  "createdAt": "2020-06-12T14:40:00.000Z",
+  "updatedAt": "2020-06-12T14:51:00.000Z",
+  "reporterId": {
+    "$oid": "5f9b0fc3856c60c2c2d349a5"
+  },
+  "userIds": [
+    {
+      "$oid": "5f9b1152819b3249bc25beeb"
+    },
+    {
+      "$oid": "5f9b1152819b3249bc25bee8"
+    }
+  ],
+  "comments": [
+    {
+      "$oid": "5f9c8719cdd34d52e8243cd3"
+    }
+  ]
+}]

@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const User = require('../models/user');
 const jwt = require('jsonwebtoken')
 const db = "mongodb://localhost:27017/pms";
 
@@ -23,38 +22,25 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true }, functi
     }
 });
 
-router.get('/project/:id', (req, res) => {
-    console.log(req.params.id);
-    projects.findById(
-        req.params.id,
-        function(err, result) {
-            if (err) {
-                console.log("error occured in project");
-                res.send("error occured")
-            } else if (!result) {
-                res.send("No Project Found")
-            } else {
-                console.log(result);
-                res.json(result);
-            }
-        });
-})
+router.post('/comment/create/:id', (req, res) => {
+    var newcomment = new comments(req.body);
+    newcomment.save(async(err, result) => {
+        if (err) {
+            console.log("error occured in project");
+            res.send("error occured");
+            res.status(400);
+        } else {
+            console.log(result);
+            await issues.findByIdAndUpdate(req.params.id, {
+                $push: {
+                    "comments": newcomment._id
+                }
+            });
 
-router.post('/project/update/:id', (req, res) => {
-    console.log(req.params.id);
-    var newUpdatedDoc = JSON.parse(JSON.stringify(req.body))
-    projects.findOneAndUpdate({ "_id": req.params.id.toString() }, newUpdatedDoc, { new: true },
-        function(err, result) {
-            if (err) {
-                console.log("error occured in project");
-                res.send("error occured")
-            } else if (!result) {
-                res.send("No Project Found")
-            } else {
-                console.log(result);
-                res.json(result);
-            }
-        });
+            res.status(200);
+            res.json({ "message": "New comment Created Successfully" });
+        }
+    });
 })
 
 module.exports = router;

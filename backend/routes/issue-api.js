@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const User = require('../models/user');
 const jwt = require('jsonwebtoken')
 const db = "mongodb://localhost:27017/pms";
 
@@ -25,14 +24,19 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true }, functi
 
 router.post('/issue/create/:id', (req, res) => {
     var newIssue = new issues(req.body);
-    newIssue.save(function(err, result) {
+    newIssue.save(async(err, result) => {
         if (err) {
-            console.log("error occured in project");
+            console.log("error occured in issue create");
             res.send("error occured");
             res.status(400);
         } else {
             console.log(result);
-            res.stats(200);
+            res.status(200);
+            await projects.findByIdAndUpdate(req.params.id, {
+                $push: {
+                    "issues": newIssue._id
+                }
+            });
             res.json({ "message": "New Issue Created Successfully" });
         }
     });
@@ -55,23 +59,28 @@ router.post('/issue/update/:id', (req, res) => {
         });
 })
 
-router.post('/issue/delete/:id', (req, res) => {
-    issues.findOne({ _id: req.params.id }, function(err, itm) {
-        if (err) {
-            res.status(400);
-            res.send("Unable to find an Issue");
-        } else {
-            itm.deleteOne(function(err) {
-                if (err) {
-                    console.log("Unable to remove an Issue");
-                    res.status(400);
-                    res.send("Unable to remove an issue");
-                }
-                console.log("Issue removed!");
-                res.json({ "message": "Issue removed!" });
-            });
-        }
-    });
+router.post('/issue/delete/:pid/:iid', (req, res) => {
+    issues.findOneAndRemove({ "_id": req.params.iid },
+        async(err, result) => {
+            if (err) {
+                res.status(400);
+                res.send("Unable to find an Issue");
+            } else {
+                console.log(result);
+                res.status(200);
+                await projects.findByIdAndUpdate(req.params.pid, {
+                    $pull: {
+                        "issues": result._id
+                    }
+                });
+
+                await comments.remove({
+                    "issueId": req.params.iid
+                });
+
+                res.json({ "message": "New Issue Removed Successfully" });
+            }
+        });
 })
 
 module.exports = router;

@@ -1,0 +1,70 @@
+[{
+  "_id": {
+    "$oid": "5f9b0fc3856c60c2c2d349a5"
+  },
+  "id": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
+  "name": "Nevil Parmar",
+  "email": "nevilparmar24@gmail.com",
+  "password": "nevil",
+  "avatarUrl": "https://res.cloudinary.com/dsugg3ucx/image/upload/v1603971725/me-orange_tdzp1n.png",
+  "createdAt": "2020-06-16T16:00:00.000Z",
+  "updatedAt": "2020-06-16T16:00:00.000Z"
+},{
+  "_id": {
+    "$oid": "5f9b1152819b3249bc25bee8"
+  },
+  "name": "Trung Vo",
+  "email": "trung@gmail.com",
+  "password": "user",
+  "avatarUrl": "https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_48/v1593253478/trung-vo_bioxmc.png",
+  "createdAt": "2020-06-16T16:00:00.000Z",
+  "updatedAt": "2020-06-16T16:00:00.000Z"
+},{
+  "_id": {
+    "$oid": "5f9b1152819b3249bc25bee9"
+  },
+  "name": "Iron Man",
+  "avatarUrl": "https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_48/v1592405732/ironman_c3jrbc.jpg",
+  "createdAt": "2020-06-16T16:00:00.000Z",
+  "updatedAt": "2020-06-16T16:00:00.000Z"
+},{
+  "_id": {
+    "$oid": "5f9b1152819b3249bc25beea"
+  },
+  "name": "Captain",
+  "avatarUrl": "https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_48/v1592405732/captain_e8s9nk.jpg",
+  "email": "user1@gmail.com",
+  "password": "user",
+  "createdAt": "2020-06-16T16:00:00.000Z",
+  "updatedAt": "2020-06-16T16:00:00.000Z"
+},{
+  "_id": {
+    "$oid": "5f9b1152819b3249bc25beeb"
+  },
+  "name": "Thor",
+  "email": "user2@gmail.com",
+  "password": "user",
+  "avatarUrl": "https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_48/v1592405731/thor_juqwzf.jpg",
+  "createdAt": "2020-06-16T16:00:00.000Z",
+  "updatedAt": "2020-06-16T16:00:00.000Z"
+},{
+  "_id": {
+    "$oid": "5f9b1152819b3249bc25beec"
+  },
+  "name": "Spider Man",
+  "email": "user3@gmail.com",
+  "password": "user",
+  "avatarUrl": "https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_48/v1592405731/spiderman_zlrtx0.jpg",
+  "createdAt": "2020-06-16T16:00:00.000Z",
+  "updatedAt": "2020-06-16T16:00:00.000Z"
+},{
+  "_id": {
+    "$oid": "5f9c29644c7ec754d8e104c8"
+  },
+  "createdAt": "2020-06-16T16:00:00.000Z",
+  "avatarUrl": "https://res.cloudinary.com/dsugg3ucx/image/upload/v1603971725/me-orange_tdzp1n.png",
+  "id": "d65047e5-f4cf-4caa-9a38-6073dcbab7e9",
+  "name": "Nevil Parmar 2",
+  "email": "nevil.parmar27@gmail.com",
+  "password": "nevil2"
+}]

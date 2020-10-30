@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "5f9c1f34819b3249bc25befd"
+  },
+  "body": "Test Comment",
+  "createdAt": "2020-06-12T14:40:01.262Z",
+  "updatedAt": "2020-06-12T14:40:01.262Z",
+  "issueId": {
+    "$oid": "5f9c1d21819b3249bc25bef0"
+  },
+  "userId": {
+    "$oid": "5f9b0fc3856c60c2c2d349a5"
+  },
+  "user": {
+    "$oid": "5f9b0fc3856c60c2c2d349a5"
+  }
+},{
+  "_id": {
+    "$oid": "5f9c8719cdd34d52e8243cd3"
+  },
+  "body": "Testing comment 2",
+  "createdAt": "2020-06-16T16:00:00.000Z",
+  "updatedAt": "2020-06-16T16:00:00.000Z",
+  "issueId": {
+    "$oid": "5f9c1d21819b3249bc25befb"
+  },
+  "userId": {
+    "$oid": "5f9b0fc3856c60c2c2d349a5"
+  },
+  "user": {
+    "$oid": "5f9b0fc3856c60c2c2d349a5"
+  }
+}]
