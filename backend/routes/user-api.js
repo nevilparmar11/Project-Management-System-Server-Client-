@@ -1,7 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const User = require('../models/user');
+
+//models
+const users = require('../models/user');
+const admins = require('../models/admin');
+const projectManagers = require('../models/project-manager');
+const projects = require('../models/projects');
+const issues = require('../models/issues');
+const comments = require('../models/comments');
+
+
 const jwt = require('jsonwebtoken')
 const db = "mongodb://localhost:27017/pms";
 mongoose.Promise = global.Promise;
@@ -32,8 +41,8 @@ function verifyToken(req, res, next) {
 
 router.post('/register', (req, res) => {
     let userData = req.body
-    let user = new User(userData)
-    user.save((err, registeredUser) => {
+    let user = new users(userData)
+    users.save((err, registeredUser) => {
         if (err) {
             console.log(err)
         } else {
@@ -44,9 +53,11 @@ router.post('/register', (req, res) => {
     })
 })
 
-router.post('/login', verifyToken, (req, res) => {
-    let userData = req.body
-    User.findOne({ email: userData.email }, (err, user) => {
+router.post('/login', (req, res) => {
+    let userData = req.body;
+    console.log(userData.email);
+    console.log(userData.password);
+    users.findOne({ email: userData.email }, (err, user) => {
         if (err) {
             console.log(err)
         } else {

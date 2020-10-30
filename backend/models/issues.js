@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const issueSchema = new Schema({
-    id: String,
     title: String,
     type: String,
     status: String,
@@ -15,14 +14,18 @@ const issueSchema = new Schema({
     timeRemaining: Number,
     createdAt: String,
     updatedAt: String,
-    reporterId: String,
-    userIds: [{
-        type: String,
+    reporterId: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+    },
+    userIds: [{ // here userIds referes to the multiple assignees of the ongoing issue
+        type: Schema.Types.ObjectId,
+        ref: 'users'
     }],
     comments: [{
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'comments'
     }],
-    projectId: String,
 }, {
     collection: "issues"
 });

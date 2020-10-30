@@ -23,10 +23,21 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true }, functi
     }
 });
 
-router.get('/project/:id', async(req, res) => {
+router.get('/project/:id', (req, res) => {
     console.log(req.params.id);
-    var result = await projects.findById(req.params.id).populate('admin pm issues users');
-    res.json(result);
+    projects.findById(
+        req.params.id,
+        function(err, result) {
+            if (err) {
+                console.log("error occured in project");
+                res.send("error occured")
+            } else if (!result) {
+                res.send("No Project Found")
+            } else {
+                console.log(result);
+                res.json(result);
+            }
+        });
 })
 
 router.post('/project/update/:id', (req, res) => {

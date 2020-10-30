@@ -1,30 +1,27 @@
 const mongoose = require('mongoose');
+const UserModel = require('./user');
 
 const Schema = mongoose.Schema;
 
-const issueSchema = new Schema({
-    id: String,
-    title: String,
-    type: String,
-    status: String,
-    priority: String,
-    listPosition: Number,
-    description: String,
-    estimate: Number,
-    timeSpent: Number,
-    timeRemaining: Number,
+const commentSchema = new Schema({
+    body: String,
     createdAt: String,
     updatedAt: String,
-    reporterId: String,
-    userIds: [{
-        type: String,
-    }],
-    comments: [{
-        type: String,
-    }],
-    projectId: String,
+    issueId: {
+        type: Schema.Types.ObjectId,
+        ref: 'issues'
+    },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: "users",
+    },
+    // mapped to display by userId, It is actual from the users table
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "users",
+    }
 }, {
-    collection: "issues"
+    collection: "comments"
 });
 
-module.exports = mongoose.model('issues', issueSchema, 'issues');
+module.exports = mongoose.model('comments', commentSchema, 'comments');

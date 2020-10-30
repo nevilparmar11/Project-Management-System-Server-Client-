@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private baseUrl: string;
   constructor(private _http: HttpClient, private _store: AuthStore, private _router : Router) {
-    this.baseUrl = environment.apiUrl; // set the value as per the production variable (Ex. Production / Developement)
+    this.baseUrl = environment.apiUrl + "/user-api"; // set the value as per the production variable (Ex. Production / Developement)
   }
 
   login({ email = '', password = '' }: LoginPayload) {
