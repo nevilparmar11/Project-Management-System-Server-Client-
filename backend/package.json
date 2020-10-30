@@ -1,0 +1,28 @@
+{
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "Backend APIs for PMS",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "aut   hor": "Nevil Parmar",
+    "lic     ense": "MIT",
+    "dep  endencies": {
+        "b   ody-parser": "^1.19.0",
+        "exp       ress": "^4.17.1",
+        "e    xpress-fileupload": "^1.2.0",
+        "fs": "0.0.1-security",
+        "multer": "^1.4.2"
+    },
+    "dev      Dependencies": {
+        "e   slint": "^7.12.1"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.10.11",
+        "nodemon": "^2.0.6"
+    }
+}

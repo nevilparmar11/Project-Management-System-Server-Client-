@@ -34,6 +34,8 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
+import { SignupComponent } from './components/user/signup/signup.component';
+import { LoginComponent } from './components/user/login/login.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { UserProfileComponent } from './components/user/user-profile/user-profil
     IssueReporterSelectComponent,
     IssueAssigneesSelectComponent,
     ResizerComponent,
+    LoginComponent,
+    SignupComponent,
     UserProfileComponent
   ],
   imports: [

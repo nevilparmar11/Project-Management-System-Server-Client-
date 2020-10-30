@@ -14,7 +14,7 @@ export class ProjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._authService.login(new LoginPayload());
+    // this._authService.login(new LoginPayload());
     this._projectService.getProject();
     this.handleResize();
   }

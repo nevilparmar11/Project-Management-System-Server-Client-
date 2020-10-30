@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +12,9 @@ import { AppComponent } from './app.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { QuillModule } from 'ngx-quill';
+import { FormsModule } from '@angular/forms';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './token-interceptor.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,9 +28,16 @@ import { QuillModule } from 'ngx-quill';
     NzIconModule.forRoot([]),
     environment.production ? [] : AkitaNgDevtools,
     AkitaNgRouterStoreModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    FormsModule
   ],
   providers: [
+    AuthGuard,
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: TokenInterceptorService,
+        multi: true
+    },
     {
       provide: NG_ENTITY_SERVICE_CONFIG,
       useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' }

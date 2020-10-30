@@ -5,18 +5,19 @@ import { of } from 'rxjs';
 import { catchError, finalize, map } from 'rxjs/operators';
 import { AuthStore } from './auth.store';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private baseUrl: string;
-  constructor(private _http: HttpClient, private _store: AuthStore) {
-    this.baseUrl = environment.apiUrl;
+  constructor(private _http: HttpClient, private _store: AuthStore, private _router : Router) {
+    this.baseUrl = environment.apiUrl; // set the value as per the production variable (Ex. Production / Developement)
   }
 
   login({ email = '', password = '' }: LoginPayload) {
     this._store.setLoading(true);
     this._http
-      .get<User>(`${this.baseUrl}/auth.json`)
+      .post<User>(`${this.baseUrl}/login`, { email, password})
       .pipe(
         map((user) => {
           this._store.update((state) => ({
@@ -34,6 +35,29 @@ export class AuthService {
       )
       .subscribe();
   }
+
+
+  registerUser(user) {
+    return this._http.post<any>(`${this.baseUrl}/register`, user)
+  }
+
+  loginUser(user) {
+    return this._http.post<any>(`${this.baseUrl}/login`, user)
+  }
+
+  logoutUser() {
+    localStorage.removeItem('token')
+    this._router.navigate(['../login'])
+  }
+
+  getToken() {
+    return localStorage.getItem('token')
+  }
+
+  loggedIn() {
+    return !!localStorage.getItem('token')    
+  }
+
 }
 
 export class LoginPayload {

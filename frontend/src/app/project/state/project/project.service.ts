@@ -26,7 +26,7 @@ export class ProjectService {
 
   getProject() {
     this._http
-      .get<Project>(`${this.baseUrl}/project.json`)
+      .get<Project>(`${this.baseUrl}/project`)
       .pipe(
         setLoading(this._store),
         tap((project) => {
@@ -43,6 +43,9 @@ export class ProjectService {
         })
       )
       .subscribe();
+
+  console.log("fetching project for the first time from the mongodb");
+  console.log(this._store);
   }
 
   updateProject(project: Partial<Project>) {
@@ -61,6 +64,8 @@ export class ProjectService {
         issues
       };
     });
+
+    console.log(this._store);
   }
 
   deleteIssue(issueId: string) {
