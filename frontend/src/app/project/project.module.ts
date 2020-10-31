@@ -26,16 +26,18 @@ import { NavigationComponents } from './components/navigation';
 import { ResizerComponent } from './components/navigation/resizer/resizer.component';
 import { IssueResultComponent } from './components/search/issue-result/issue-result.component';
 import { SearchDrawerComponent } from './components/search/search-drawer/search-drawer.component';
-import { UserComponent } from './components/user/user.component';
 import { NZ_JIRA_ICONS } from './config/icons';
 import { BoardComponent } from './pages/board/board.component';
 import { FullIssueDetailComponent } from './pages/full-issue-detail/full-issue-detail.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
-import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
-import { SignupComponent } from './components/user/signup/signup.component';
-import { LoginComponent } from './components/user/login/login.component';
+// used to create fake backend
+
+import { JwtInterceptor, ErrorInterceptor, fakeBackendProvider } from './components/_helpers';
+import { AlertComponent } from './components/_components';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -50,15 +52,13 @@ import { LoginComponent } from './components/user/login/login.component';
     SearchDrawerComponent,
     IssueResultComponent,
     AddIssueModalComponent,
-    UserComponent,
     IssueTypeSelectComponent,
     IssuePrioritySelectComponent,
     IssueReporterSelectComponent,
     IssueAssigneesSelectComponent,
     ResizerComponent,
-    LoginComponent,
-    SignupComponent,
-    UserProfileComponent
+    AlertComponent,
+    UserComponent
   ],
   imports: [
     CommonModule,
@@ -77,7 +77,14 @@ import { LoginComponent } from './components/user/login/login.component';
     ReactiveFormsModule,
     JiraControlModule,
     ContentLoaderModule,
-    QuillModule
-  ]
+    QuillModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    fakeBackendProvider
+],
 })
 export class ProjectModule {}

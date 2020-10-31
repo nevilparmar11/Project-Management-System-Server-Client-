@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.interceptor';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -29,7 +30,7 @@ import { TokenInterceptorService } from './token-interceptor.interceptor';
     environment.production ? [] : AkitaNgDevtools,
     AkitaNgRouterStoreModule,
     QuillModule.forRoot(),
-    FormsModule
+    FormsModule,
   ],
   providers: [
     AuthGuard,
