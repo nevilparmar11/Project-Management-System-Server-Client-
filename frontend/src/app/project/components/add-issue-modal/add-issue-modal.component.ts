@@ -68,13 +68,12 @@ export class AddIssueModalComponent implements OnInit {
     const now = DateUtil.getNow();
     const issue: Issue = {
       ...this.issueForm.getRawValue(),
-      id: IssueUtil.getRandomId(),
       status: IssueStatus.BACKLOG,
       createdAt: now,
       updatedAt: now
     };
 
-    this._projectService.updateIssue(issue);
+    this._projectService.createIssue(issue);
     this.closeModal();
   }
 

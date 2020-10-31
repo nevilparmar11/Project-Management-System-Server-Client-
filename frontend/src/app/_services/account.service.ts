@@ -7,6 +7,11 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from '../interface/user';
 
+
+// local stores to manage the state of the application
+import { AuthStore } from '../project/auth/auth.store';
+
+
 @Injectable({ providedIn: 'root' })
 export class AccountService {
     private userSubject: BehaviorSubject<User>;
@@ -14,7 +19,8 @@ export class AccountService {
 
     constructor(
         private router: Router,
-        private http: HttpClient
+        private http: HttpClient,
+        private _store : AuthStore,
     ) {
         this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
         this.user = this.userSubject.asObservable();
@@ -28,6 +34,10 @@ export class AccountService {
         return this.http.post<User>(`${environment.apiUrl}/user-api/login`, { email, password })
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
+                this._store.update((state) => ({
+                    ...state,
+                    ...user
+                  }));
                 localStorage.setItem('user', JSON.stringify(user));
                 this.userSubject.next(user);
                 return user;

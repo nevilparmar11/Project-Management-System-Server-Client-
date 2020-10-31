@@ -17,7 +17,7 @@ export class ProjectService {
   baseUrl: string;
 
   constructor(private _http: HttpClient, private _store: ProjectStore) {
-    this.baseUrl = environment.apiUrl + "/project-api";
+    this.baseUrl = environment.apiUrl;
   }
 
   setLoading(isLoading: boolean) {
@@ -26,7 +26,7 @@ export class ProjectService {
 
   getProject() {
     this._http
-      .get<Project>(`${this.baseUrl}/project/5f9b109e856c60c2c2d349a6`)
+      .get<Project>(`${this.baseUrl}/project-api/project/5f9b109e856c60c2c2d349a6`)
       .pipe(
         setLoading(this._store),
         tap((project) => {
@@ -49,33 +49,106 @@ export class ProjectService {
   }
 
   updateProject(project: Partial<Project>) {
-    this._store.update((state) => ({
-      ...state,
-      ...project
-    }));
+
+    this._http
+    .post<Project>(`${this.baseUrl}/project-api/project/update/5f9b109e856c60c2c2d349a6`, project)
+    .pipe(
+      setLoading(this._store),
+      tap((project) => {
+        this._store.update((state) => {
+          return {
+            ...state,
+            ...project
+          };
+        });
+
+        this.getProject();
+      }),
+      catchError((error) => {
+        this._store.setError(error);
+        return of(error);
+      })
+    )
+    .subscribe();
+
   }
 
   updateIssue(issue: Issue) {
     issue.updatedAt = DateUtil.getNow();
-    this._store.update((state) => {
-      const issues = arrayUpsert(state.issues, issue._id, issue);
-      return {
-        ...state,
-        issues
-      };
-    });
+    this._http
+    .post<Issue>(`${this.baseUrl}/issue-api/issue/update/${issue._id}`, issue)
+    .pipe(
+      setLoading(this._store),
+      tap((issue) => {
+        this._store.update((state) => {
+          const issues = arrayUpsert(state.issues, issue._id, issue);
+          return {
+            ...state,
+            issues
+          };
+        });
+        this.getProject();
+      }),
+      catchError((error) => {
+        this._store.setError(error);
+        return of(error);
+      })
+    )
+    .subscribe();
 
     console.log(this._store);
   }
 
+  createIssue(issue: Issue) {
+    issue.updatedAt = DateUtil.getNow();
+    this._http
+    .post<Issue>(`${this.baseUrl}/issue-api/issue/create/5f9b109e856c60c2c2d349a6`, issue)
+    .pipe(
+      setLoading(this._store),
+      tap((issue) => {
+        this._store.update((state) => {
+          const issues = arrayUpsert(state.issues, issue._id, issue);
+          return {
+            ...state,
+            issues
+          };
+        });
+        this.getProject();
+      }),
+      catchError((error) => {
+        this._store.setError(error);
+        return of(error);
+      })
+    )
+    .subscribe();
+
+    console.log(this._store);
+  }
+
+
   deleteIssue(issueId: string) {
-    this._store.update((state) => {
-      const issues = arrayRemove(state.issues, issueId);
-      return {
-        ...state,
-        issues
-      };
-    });
+    
+    this._http
+    .post<Issue>(`${this.baseUrl}/issue-api/issue/delete/5f9b109e856c60c2c2d349a6/${issueId}`,{})
+    .pipe(
+      setLoading(this._store),
+      tap((issue) => {
+        this._store.update((state) => {
+          const issues = arrayRemove(state.issues, issueId);
+          return {
+            ...state,
+            issues
+          };
+        });
+        this.getProject();
+      }),
+      catchError((error) => {
+        this._store.setError(error);
+        return of(error);
+      })
+    )
+    .subscribe();
+
   }
 
   updateIssueComment(issueId: string, comment: Comment) {
@@ -85,10 +158,27 @@ export class ProjectService {
       return;
     }
 
-    const comments = arrayUpsert(issue.comments ?? [], comment._id, comment);
-    this.updateIssue({
-      ...issue,
-      comments
-    });
+  
+
+    this._http
+    .post<Comment>(`${this.baseUrl}/comment-api/comment/create/${issueId}`,{})
+    .pipe(
+      setLoading(this._store),
+      tap((comment) => {
+        this._store.update((state) => {
+          const comments = arrayUpsert(issue.comments ?? [], comment._id, comment);
+          this.updateIssue({
+            ...issue,
+            comments
+          });
+        });
+        this.getProject();
+      }),
+      catchError((error) => {
+        this._store.setError(error);
+        return of(error);
+      })
+    )
+    .subscribe();
   }
 }
