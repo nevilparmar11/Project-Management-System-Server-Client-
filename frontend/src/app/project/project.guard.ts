@@ -26,7 +26,7 @@ export class ProjectGuard implements CanActivate {
         }
         return state;
       }),
-      filter((state) => !!state.id),
+      filter((state) => !!state._id),
       take(1),
       catchError((error) => of(error))
     );

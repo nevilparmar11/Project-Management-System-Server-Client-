@@ -37,7 +37,7 @@ export const IssuePriorityColors = {
 };
 
 export interface Issue {
-  id: string;
+  _id: string;
   title: string;
   type: IssueType;
   status: IssueStatus;

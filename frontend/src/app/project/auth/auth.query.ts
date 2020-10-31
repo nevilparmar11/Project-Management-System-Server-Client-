@@ -9,5 +9,5 @@ export class AuthQuery extends Query<AuthState> {
   }
 
   user$ = this.select();
-  userId$ = this.select('id');
+  userId$ = this.select('_id');
 }

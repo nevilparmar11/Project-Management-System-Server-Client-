@@ -31,7 +31,7 @@ router.get('/project/:id', async(req, res) => {
             model: 'comments',
         }
     }]);
-    res.json(result);
+    res.send(result);
 })
 
 router.post('/project/update/:id', (req, res) => {

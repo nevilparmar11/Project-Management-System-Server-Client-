@@ -3,14 +3,14 @@ import { User } from './user';
 export class Comment {
   constructor(issueId: string, user: User) {
     const now = new Date();
-    this.id = `${now.getTime()}`;
+    this._id = `${now.getTime()}`;
     this.issueId = issueId;
     this.user = user;
     this.createdAt = now.toISOString();
     this.updatedAt = now.toISOString();
   }
 
-  id: string;
+  _id: string;
   body: string;
   createdAt: string;
   updatedAt: string;

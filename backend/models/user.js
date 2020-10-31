@@ -17,6 +17,9 @@ const userSchema = new Schema({
     },
     avatarUrl: { type: String, default: "../uploads/profilePics/default.png" },
     password: String,
+    issueIds: [{
+        type: String,
+    }]
 }, {
     collection: "users"
 });

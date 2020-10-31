@@ -2,7 +2,7 @@ import { Issue } from './issue';
 import { User } from './user';
 
 export interface Project {
-  id: string;
+  _id: string;
   name: string;
   url: string;
   description: string;
