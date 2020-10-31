@@ -1,5 +1,33 @@
-<div id="app-frame">
+<!-- <div id="app-frame">
     <nz-spin class="global-spinner" [nzSpinning]="projectQuery.isLoading$ | async" nzSize="large">
         <router-outlet></router-outlet>
     </nz-spin>
+</div> -->
+
+<!-- nav -->
+<!-- <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </div>
+</nav> -->
+
+<!-- main app container -->
+<div class="app-container" [ngClass]="{ 'bg-light': user }">
+    <nz-spin class="global-spinner" [nzSpinning]="projectQuery.isLoading$ | async" nzSize="large">
+        <alert></alert>
+        <router-outlet></router-outlet>
+    </nz-spin>
+</div>
+
+<!-- credits -->
+<div class="text-center mt-4">
+    <div class="footer">
+        Copyright &copy; 2020 &mdash; Nevil Parmar
+        <p>
+            <a href="https://nevilparmar.me" target="_blank">nevilparmar.me</a>
+        </p>
+    </div>
+
 </div>

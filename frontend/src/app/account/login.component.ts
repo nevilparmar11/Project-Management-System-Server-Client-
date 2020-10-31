@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.form = this.formBuilder.group({
-            username: ['', Validators.required],
+            email: ['', Validators.required],
             password: ['', Validators.required]
         });
 
@@ -43,13 +43,16 @@ export class LoginComponent implements OnInit {
         // reset alerts on submit
         this.alertService.clear();
 
+        console.log('before');
         // stop here if form is invalid
         if (this.form.invalid) {
             return;
         }
+        console.log('after');
+
 
         this.loading = true;
-        this.accountService.login(this.f.username.value, this.f.password.value)
+        this.accountService.login(this.f.email.value, this.f.password.value)
             .pipe(first())
             .subscribe(
                 data => {

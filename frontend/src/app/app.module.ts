@@ -13,12 +13,15 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { QuillModule } from 'ngx-quill';
 import { FormsModule } from '@angular/forms';
-import { AuthGuard } from './auth.guard';
-import { TokenInterceptorService } from './token-interceptor.interceptor';
+
+import { fakeBackendProvider } from './_helpers';
+
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { AlertComponent } from './_components';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AlertComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -33,16 +36,13 @@ import { TokenInterceptorService } from './token-interceptor.interceptor';
     FormsModule,
   ],
   providers: [
-    AuthGuard,
-    {
-        provide: HTTP_INTERCEPTORS,
-        useClass: TokenInterceptorService,
-        multi: true
-    },
-    {
-      provide: NG_ENTITY_SERVICE_CONFIG,
-      useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' }
-    }
+      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+      { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+      { 
+        provide: NG_ENTITY_SERVICE_CONFIG,
+        useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' }
+      }
   ],
   bootstrap: [AppComponent]
 })

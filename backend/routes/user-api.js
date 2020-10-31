@@ -42,7 +42,7 @@ function verifyToken(req, res, next) {
 router.post('/register', (req, res) => {
     let userData = req.body
     let user = new users(userData)
-    users.save((err, registeredUser) => {
+    user.save((err, registeredUser) => {
         if (err) {
             console.log(err)
         } else {

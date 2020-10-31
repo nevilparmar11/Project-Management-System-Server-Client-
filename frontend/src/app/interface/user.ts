@@ -6,4 +6,5 @@ export interface User {
   createdAt: string;
   updatedAt: string;
   issueIds: string[];
+  token : string,
 }

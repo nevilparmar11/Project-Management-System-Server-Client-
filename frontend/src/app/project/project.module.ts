@@ -32,12 +32,7 @@ import { FullIssueDetailComponent } from './pages/full-issue-detail/full-issue-d
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
-// used to create fake backend
-
-import { JwtInterceptor, ErrorInterceptor, fakeBackendProvider } from './components/_helpers';
-import { AlertComponent } from './components/_components';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { UserComponent } from './components/user/user.component';
+import {UserComponent} from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -57,8 +52,7 @@ import { UserComponent } from './components/user/user.component';
     IssueReporterSelectComponent,
     IssueAssigneesSelectComponent,
     ResizerComponent,
-    AlertComponent,
-    UserComponent
+    UserComponent,
   ],
   imports: [
     CommonModule,
@@ -79,12 +73,5 @@ import { UserComponent } from './components/user/user.component';
     ContentLoaderModule,
     QuillModule,
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-    // provider used to create fake backend
-    fakeBackendProvider
-],
 })
 export class ProjectModule {}

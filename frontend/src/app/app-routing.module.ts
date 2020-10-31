@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './auth.guard';
+import {AuthGuard} from './_helpers';
 
 
 const routes: Routes = [
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
      path: 'account',
-     loadChildren :  () => import('./project/components/account/account.module').then((m) => m.AccountModule),
+     loadChildren :  () => import('./account/account.module').then((m) => m.AccountModule),
   },
   {
     path: '**',
