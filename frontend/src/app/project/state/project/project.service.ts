@@ -17,7 +17,7 @@ export class ProjectService {
   baseUrl: string;
 
   constructor(private _http: HttpClient, private _store: ProjectStore) {
-    this.baseUrl = environment.apiUrl;
+    this.baseUrl = environment.apiUrl + "/project-api";
   }
 
   setLoading(isLoading: boolean) {
@@ -26,7 +26,7 @@ export class ProjectService {
 
   getProject() {
     this._http
-      .get<Project>(`${this.baseUrl}/project`)
+      .get<Project>(`${this.baseUrl}/project/5f9b109e856c60c2c2d349a6`)
       .pipe(
         setLoading(this._store),
         tap((project) => {
@@ -58,7 +58,7 @@ export class ProjectService {
   updateIssue(issue: Issue) {
     issue.updatedAt = DateUtil.getNow();
     this._store.update((state) => {
-      const issues = arrayUpsert(state.issues, issue.id, issue);
+      const issues = arrayUpsert(state.issues, issue._id, issue);
       return {
         ...state,
         issues
@@ -80,12 +80,12 @@ export class ProjectService {
 
   updateIssueComment(issueId: string, comment: Comment) {
     const allIssues = this._store.getValue().issues;
-    const issue = allIssues.find((x) => x.id === issueId);
+    const issue = allIssues.find((x) => x._id === issueId);
     if (!issue) {
       return;
     }
 
-    const comments = arrayUpsert(issue.comments ?? [], comment.id, comment);
+    const comments = arrayUpsert(issue.comments ?? [], comment._id, comment);
     this.updateIssue({
       ...issue,
       comments

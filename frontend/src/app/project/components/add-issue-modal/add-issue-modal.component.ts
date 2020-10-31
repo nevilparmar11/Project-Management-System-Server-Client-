@@ -42,7 +42,7 @@ export class AddIssueModalComponent implements OnInit {
       tap((users) => {
         const [user] = users;
         if (user) {
-          this.f.reporterId.patchValue(user.id);
+          this.f.reporterId.patchValue(user._id);
         }
       })
     );

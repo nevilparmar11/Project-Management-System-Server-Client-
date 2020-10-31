@@ -38,7 +38,7 @@ export class BoardFilterComponent implements OnInit {
   }
 
   isUserSelected(user: User) {
-    return this.userIds.includes(user.id);
+    return this.userIds.includes(user._id);
   }
 
   ignoreResolvedChanged() {
@@ -50,7 +50,7 @@ export class BoardFilterComponent implements OnInit {
   }
 
   userChanged(user: User) {
-    this.filterService.toggleUserId(user.id);
+    this.filterService.toggleUserId(user._id);
   }
 
   resetAll() {

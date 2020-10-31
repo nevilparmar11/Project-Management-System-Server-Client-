@@ -52,7 +52,7 @@ export class IssueCommentComponent implements OnInit {
     const now = new Date();
     this.projectService.updateIssueComment(this.issueId, {
       ...this.comment,
-      id: `${now.getTime()}`,
+      _id: `${now.getTime()}`,
       createdAt: now.toISOString(),
       updatedAt: now.toISOString(),
       body: this.commentControl.value

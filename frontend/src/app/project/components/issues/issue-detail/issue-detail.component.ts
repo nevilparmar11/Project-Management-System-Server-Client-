@@ -31,7 +31,7 @@ export class IssueDetailComponent implements OnInit {
         top: '140px'
       },
       nzComponentParams: {
-        issueId: this.issue.id,
+        issueId: this.issue._id,
         onDelete: this.onDelete
       }
     });
@@ -42,6 +42,6 @@ export class IssueDetailComponent implements OnInit {
   }
 
   openIssuePage() {
-    this.onOpenIssue.emit(this.issue.id);
+    this.onOpenIssue.emit(this.issue._id);
   }
 }

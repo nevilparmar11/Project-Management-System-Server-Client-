@@ -5,7 +5,7 @@
 <p-button *ngFor="let assignee of assignees" [className]="'btn-secondary mr-1-5 mb-2'">
     <div class="flex items-center">
         <j-user [user]="assignee"></j-user>
-        <svg-icon (click)="removeUser(assignee.id)" title="Remove user" [size]="20" [name]="'times'" class="text-textLight">
+        <svg-icon (click)="removeUser(assignee._id)" title="Remove user" [size]="20" [name]="'times'" class="text-textLight">
         </svg-icon>
     </div>
 </p-button>

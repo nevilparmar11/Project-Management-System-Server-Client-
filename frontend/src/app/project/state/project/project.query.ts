@@ -37,7 +37,7 @@ export class ProjectQuery extends Query<ProjectState> {
     return this.issues$.pipe(
       delay(500),
       map((issues) => {
-        const issue = issues.find(x => x.id === issueId);
+        const issue = issues.find(x => x._id === issueId);
         return issue;
       })
     );

@@ -17,6 +17,6 @@ export class IssueAssigneesSelectComponent implements OnInit {
   ngOnInit(): void {}
 
   getUser(userId: string) {
-    return this.users.find((user) => user.id === userId);
+    return this.users.find((user) => user._id === userId);
   }
 }

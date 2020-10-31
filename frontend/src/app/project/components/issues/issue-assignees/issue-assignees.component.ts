@@ -18,13 +18,13 @@ export class IssueAssigneesComponent implements OnInit, OnChanges {
   constructor(private _projectService: ProjectService) {}
 
   ngOnInit(): void {
-    this.assignees = this.issue.userIds.map((userId) => this.users.find((x) => x.id === userId));
+    this.assignees = this.issue.userIds.map((userId) => this.users.find((x) => x._id === userId));
   }
 
   ngOnChanges(changes: SimpleChanges) {
     const issueChange = changes.issue;
     if (this.users && issueChange.currentValue !== issueChange.previousValue) {
-      this.assignees = this.issue.userIds.map((userId) => this.users.find((x) => x.id === userId));
+      this.assignees = this.issue.userIds.map((userId) => this.users.find((x) => x._id === userId));
     }
   }
 
@@ -39,11 +39,11 @@ export class IssueAssigneesComponent implements OnInit, OnChanges {
   addUserToIssue(user: User) {
     this._projectService.updateIssue({
       ...this.issue,
-      userIds: [...this.issue.userIds, user.id]
+      userIds: [...this.issue.userIds, user._id]
     });
   }
 
   isUserSelected(user: User): boolean {
-    return this.issue.userIds.includes(user.id);
+    return this.issue.userIds.includes(user._id);
   }
 }

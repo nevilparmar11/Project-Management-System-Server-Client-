@@ -22,18 +22,18 @@ export class IssueReporterComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     const issueChange = changes.issue;
     if (this.users && issueChange.currentValue !== issueChange.previousValue) {
-      this.reporter = this.users.find((x) => x.id === this.issue.reporterId);
+      this.reporter = this.users.find((x) => x._id === this.issue.reporterId);
     }
   }
 
   isUserSelected(user: User) {
-    return user.id === this.issue.reporterId;
+    return user._id === this.issue.reporterId;
   }
 
   updateIssue(user: User) {
     this._projectService.updateIssue({
       ...this.issue,
-      reporterId: user.id
+      reporterId: user._id
     });
   }
 }
