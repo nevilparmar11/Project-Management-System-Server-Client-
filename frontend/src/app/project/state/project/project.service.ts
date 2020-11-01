@@ -51,7 +51,7 @@ export class ProjectService {
   updateProject(project: Partial<Project>) {
 
     this._http
-    .post<Project>(`${this.baseUrl}/project-api/project/update/5f9b109e856c60c2c2d349a6`, project)
+    .post<Project>(`${this.baseUrl}/project-api/project/update/${project._id}`, project)
     .pipe(
       setLoading(this._store),
       tap((project) => {
@@ -98,7 +98,6 @@ export class ProjectService {
 
     console.log(this._store);
   }
-
   createIssue(issue: Issue) {
     issue.updatedAt = DateUtil.getNow();
     this._http
