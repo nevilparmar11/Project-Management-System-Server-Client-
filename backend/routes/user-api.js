@@ -69,7 +69,27 @@ router.post('/login', (req, res) => {
             } else {
                 let payload = { subject: user._id }
                 let token = jwt.sign(payload, 'secretKey')
+                    // res.status(200).send({ token, user })
                 res.status(200).send({ token, user })
+            }
+        }
+    })
+})
+
+
+router.get('/:id', (req, res) => {
+    let userData = req.params;
+
+    console.log(userData.id);
+    users.findById(userData.id, (err, user) => {
+        if (err) {
+            console.log(err)
+        } else {
+            if (!user) {
+                res.status(401).send('Invalid Email')
+            } else {
+                console.log("inside fetch by id user");
+                res.status(200).send({ user })
             }
         }
     })

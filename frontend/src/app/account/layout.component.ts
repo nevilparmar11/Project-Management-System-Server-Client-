@@ -13,6 +13,7 @@ export class LayoutComponent {
     ) {
         // redirect to home if already logged in
         if (this.accountService.userValue) {
+            console.log("hello");
             const user = this.accountService.userValue;
             this._store.update((state) => ({
                 ...state,

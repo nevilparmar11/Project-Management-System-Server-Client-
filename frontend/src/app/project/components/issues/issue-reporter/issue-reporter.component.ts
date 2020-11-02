@@ -21,6 +21,7 @@ export class IssueReporterComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     const issueChange = changes.issue;
+    console.log("issue changes" + issueChange);
     if (this.users && issueChange.currentValue !== issueChange.previousValue) {
       this.reporter = this.users.find((x) => x._id === this.issue.reporterId);
     }

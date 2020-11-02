@@ -9,6 +9,8 @@ import { of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ProjectStore } from './project.store';
+import {AccountService} from '@nevilparmar11/_services/account.service';
+import { AuthService } from '@nevilparmar11/project/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,7 @@ import { ProjectStore } from './project.store';
 export class ProjectService {
   baseUrl: string;
 
-  constructor(private _http: HttpClient, private _store: ProjectStore) {
+  constructor(private _http: HttpClient, private _store: ProjectStore, private _authService: AuthService,private _accService : AccountService) {
     this.baseUrl = environment.apiUrl;
   }
 
@@ -25,6 +27,7 @@ export class ProjectService {
   }
 
   getProject() {
+
     this._http
       .get<Project>(`${this.baseUrl}/project-api/project/5f9b109e856c60c2c2d349a6`)
       .pipe(
@@ -43,7 +46,7 @@ export class ProjectService {
         })
       )
       .subscribe();
-
+  
   console.log("fetching project for the first time from the mongodb");
   console.log(this._store);
   }
