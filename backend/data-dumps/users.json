@@ -67,4 +67,13 @@
   "name": "Nevil Parmar 2",
   "email": "nevil.parmar27@gmail.com",
   "password": "nevil2"
+},{
+  "_id": {
+    "$oid": "5f9d8d7518e89078305227fd"
+  },
+  "createdAt": "2020-10-31T16:06:52.086Z",
+  "avatarUrl": "../uploads/profilePics/default.png",
+  "name": "abcd def",
+  "email": "abcd@gmail.com",
+  "password": "abcd1234"
 }]
